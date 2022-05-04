@@ -1,6 +1,7 @@
 /*EX 1
 Listar nome e sobrenome ordenado por sobrenome
 */ 
+use BDExercicio
 SELECT FUNCIONARIOS.nmFuncionario, FUNCIONARIOS.nmSFuncionario from FUNCIONARIOS
 ORDER BY FUNCIONARIOS.nmSFuncionario
 
@@ -122,16 +123,17 @@ FROM Departamentos ) );
 
 /*EX 18
 Liste todos os funcionários do Departamento de TI se existir algum estagiário neste departamento.
-
-TODO
 */ 
-
+SELECT f.*, d.dsDepartamento FROM FUNCIONARIOS f INNER JOIN Departamentos d 
+ON f.CdDepartamento = d.cdDepartamento 
+WHERE f.dsCargo = 'Estagiário' and d.dsDepartamento = 'TI'
 
 /*EX 19
 Exiba o sobrenome ordenado de todos os funcionários que ganham acima da média salarial da companhia.
-
-TODO
 */ 
+SELECT FUNCIONARIOS.nmSFuncionario FROM FUNCIONARIOS 
+WHERE FUNCIONARIOS.vlSalario > (SELECT AVG(FUNCIONARIOS.vlSalario) FROM FUNCIONARIOS)
+order by nmFuncionario
 
 /*EX 20
 Exiba o ano de nascimento de cada funcionário.
